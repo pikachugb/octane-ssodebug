@@ -6,7 +6,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.microfocus</groupId>
-	<artifactId>ssodebug</artifactId>
+	<artifactId>octane-ssodebug</artifactId>
 	<version>1.0-SNAPSHOT</version>
 
 	<name>ssodebug</name>
