@@ -10,9 +10,7 @@
 		</encoder>
 	</appender>
 
-	<appender name="TextAreaAppender" class="com.microfocus.TextAreaAppender">
-	</appender>
-
+	<appender name="TextAreaAppender" class="com.microfocus.TextAreaAppender"/>
 
 	<root level="debug">
 		<appender-ref ref="STDOUT" />

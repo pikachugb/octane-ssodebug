@@ -15,8 +15,8 @@ public class OctaneService {
 			TokenPollingStartedHandler tokenPollingStartedHandler, 
 			TokenPollingInProgressHandler tokenPollingInProgressHandler, 
 			TokenPollingCompleteHandler tokenPollingCompleteHandler) {
-		
-		IdePluginsOctaneHttpClient idePluginsOctaneHttpClient = new IdePluginsOctaneHttpClient(connectionSettings.getBaseUrl(), ClientType.OCTANE_IDE_PLUGIN);
+
+		TestIdePluginsOctaneHttpClient idePluginsOctaneHttpClient = new TestIdePluginsOctaneHttpClient(connectionSettings.getBaseUrl(), ClientType.OCTANE_IDE_PLUGIN);
 		idePluginsOctaneHttpClient.setSsoTokenPollingCompleteHandler(tokenPollingCompleteHandler);
 		idePluginsOctaneHttpClient.setSsoTokenPollingInProgressHandler(tokenPollingInProgressHandler);
 		idePluginsOctaneHttpClient.setSsoTokenPollingStartedHandler(tokenPollingStartedHandler);
