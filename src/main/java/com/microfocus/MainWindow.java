@@ -211,6 +211,7 @@ public class MainWindow {
 		lblLoginUrlValue.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				logger.debug("Login link clicked, launching browser: " + loginUrl);
 				Program.launch(loginUrl);
 			}
 		});

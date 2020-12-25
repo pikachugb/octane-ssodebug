@@ -24,6 +24,8 @@ import com.hpe.adm.nga.sdk.network.OctaneHttpResponse;
 import com.hpe.adm.octane.ideplugins.services.connection.granttoken.*;
 import com.hpe.adm.octane.ideplugins.services.exception.ServiceRuntimeException;
 import com.hpe.adm.octane.ideplugins.services.util.ClientType;
+
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.CookieSpecs;
 import org.apache.http.client.config.RequestConfig;
@@ -212,7 +214,8 @@ public class TestIdePluginsOctaneHttpClient implements OctaneHttpClient {
                             identifierRequestContent);
 
                     logger.debug(LOGGER_REQUEST_FORMAT, pollRequest.getRequestMethod(), pollRequest.getUrl().toString(), new HttpHeaders());
-
+                    logger.debug("Body: " + identifierRequestJson.toString());
+                    
                     HttpResponse pollResponse = pollRequest.execute();
                     logger.debug(LOGGER_RESPONSE_FORMAT, pollResponse.getStatusCode(), pollResponse.getStatusMessage(), pollResponse.getHeaders().toString());
 
@@ -221,6 +224,15 @@ public class TestIdePluginsOctaneHttpClient implements OctaneHttpClient {
                     pollResponseJson = new JSONObject(pollResponse.parseAsString());
 
                 } catch (Exception ex) {
+                	if(ex instanceof HttpResponseException) {
+                		HttpResponseException httpEx = (HttpResponseException) ex;
+                		logger.debug("Poll reponse:\n" + httpEx.getContent());
+                	} else {
+                		String stacktrace = ExceptionUtils.getStackTrace(ex);
+                		logger.debug(ex.getMessage());
+                		logger.debug(stacktrace);
+                	}
+                	
                     try {
                         Thread.sleep(1000L); // Do not DOS the server, not cool
                     } catch (InterruptedException e) {
