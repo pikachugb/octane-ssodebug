@@ -457,6 +457,8 @@ public class TestIdePluginsOctaneHttpClient implements OctaneHttpClient {
             List<String> exceptionContentList = new ArrayList<>();
             exceptionContentList.add(httpResponseException.getStatusMessage());
             exceptionContentList.add(httpResponseException.getContent());
+            
+            logger.debug(httpResponseException.getContent());
 
             for (String exceptionContent : exceptionContentList) {
                 try {
