@@ -618,7 +618,8 @@ public class TestIdePluginsOctaneHttpClient implements OctaneHttpClient {
      * Log jvm proxy system properties for debugging connection issues
      */
     private static void logProxySystemProperties() {
-        String[] proxySysProperties = new String[]{"java.net.useSystemProxies", "http.proxyHost", "http.proxyPort", "https.proxyHost", "https.proxyPort"};
+        String[] proxySysProperties = new String[]{"java.net.useSystemProxies", "http.proxyHost", "http.proxyPort", "http.proxyUser", "http.proxyPassword",
+                "https.proxyHost", "https.proxyPort", "https.proxyUser", "https.proxyPassword"};
         Arrays.stream(proxySysProperties)
                 .forEach(sysProp -> logger.debug(sysProp + ": " + System.getProperty(sysProp)));
     }

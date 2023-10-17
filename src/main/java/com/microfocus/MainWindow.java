@@ -46,8 +46,12 @@ public class MainWindow {
 	private String loginUrl = "";
 	private Label lblProxyHost;
 	private Label lblProxyPort;
+	private Label lblProxyUser;
+	private Label lblProxyPassword;
 	private Text textProxyHost;
 	private Text textProxyPort;
+	private Text textProxyUser;
+	private Text textProxyPassword;
 	private Label label_1;
 
 	public static void main(String[] args) {
@@ -96,6 +100,20 @@ public class MainWindow {
 
 		textProxyPort = new Text(shlOctaneSsoDebug, SWT.BORDER);
 		textProxyPort.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		
+		lblProxyUser = new Label(shlOctaneSsoDebug, SWT.NONE);
+		lblProxyUser.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		lblProxyUser.setText("Proxy User:");
+
+		textProxyUser = new Text(shlOctaneSsoDebug, SWT.BORDER);
+		textProxyUser.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+
+		lblProxyPassword = new Label(shlOctaneSsoDebug, SWT.NONE);
+		lblProxyPassword.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		lblProxyPassword.setText("Proxy Password:");
+
+		textProxyPassword = new Text(shlOctaneSsoDebug, SWT.BORDER);
+		textProxyPassword.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		
 		label_1 = new Label(shlOctaneSsoDebug, SWT.SEPARATOR | SWT.HORIZONTAL);
 		label_1.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 2, 1));
@@ -159,13 +177,21 @@ public class MainWindow {
 				if(StringUtils.isNotEmpty(textProxyHost.getText()) && StringUtils.isNotEmpty(textProxyPort.getText())) {
 					System.setProperty("http.proxyHost", textProxyHost.getText().trim());
 					System.setProperty("http.proxyPort", textProxyPort.getText().trim());
+					System.setProperty("http.proxyUser", textProxyUser.getText().trim());
+					System.setProperty("http.proxyPassword", textProxyPassword.getText().trim());
 					System.setProperty("https.proxyHost", textProxyHost.getText().trim());
 					System.setProperty("https.proxyPort", textProxyPort.getText().trim());
+					System.setProperty("https.proxyUser", textProxyUser.getText().trim());
+					System.setProperty("https.proxyPassword", textProxyPassword.getText().trim());
 				} else {
 					System.clearProperty("http.proxyHost");
 					System.clearProperty("http.proxyPort");
+					System.clearProperty("http.proxyUser");
+					System.clearProperty("http.proxyPassword");
 					System.clearProperty("https.proxyHost");
 					System.clearProperty("https.proxyPort");
+					System.clearProperty("https.proxyUser");
+					System.clearProperty("https.proxyPassword");
 				}
 
 				btnLogin.setEnabled(false);
